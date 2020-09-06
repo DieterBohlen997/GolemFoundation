@@ -1,0 +1,61 @@
+version: "3.5"
+
+#######   NETWORK  #######
+
+networks:
+  golem-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.0.0.0/16
+
+#######   EXTENSIONS   #######
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "100m"
+    max-file: "3"
+
+x-networks:
+  &default-networks
+  - golem-network
+
+x-restart-policy:
+  &default-restart-policy
+  on-failure
+
+#######   SERVICE DEFINITION   #######
+
+services:
+
+  app:
+    networks:
+      - golem-network
+    build:
+      context: ./app/
+      dockerfile: Dockerfile
+    restart: *default-restart-policy
+    logging: *default-logging
+    ports:
+      - 80:80
+    environment:
+      - "EMAIL:${EMAIL_LOGIN}"
+      - "password:${EMAIL_PASSWORD}"
+      - "IMAP_URL:${EMAIL_IMAP_URL}"
+    volumes:
+      - ~/mail:/home/offlineimap/mail/
+
+  nginx:
+    networks:
+      - golem-network
+    image: nginx:${NGINX_VERSION}
+    restart: *default-restart-policy
+    ports:
+      - 8081:8080
+    depends_on:
+      - app
+    volumes:
+      - ./nginx:/etc/nginx/...
+    logging: *default-logging

@@ -1,0 +1,12 @@
+[Unit]
+Description=projekcik dla GolemF :))
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=python3 /app/app.py
+KillMode=process
+TimeoutStopSec=900
+
+[Install]
+WantedBy=multi-user.target
