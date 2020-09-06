@@ -44,8 +44,6 @@ services:
       - "EMAIL:${EMAIL_LOGIN}"
       - "password:${EMAIL_PASSWORD}"
       - "IMAP_URL:${EMAIL_IMAP_URL}"
-    volumes:
-      - ~/mail:/home/offlineimap/mail/
 
   nginx:
     networks:
