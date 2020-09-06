@@ -11,6 +11,5 @@ Usage:
 - --email-login - login to your email account
 - --email-password - password to your email app
 - --imap-url (default - imap.fastmail.com)
-Example: ./start.sh rsiliwoniukgolem@fastmail.com secretpassword1
-or ./start.sh --email-login rsiliwoniukgolem@fastmail.com --email-password secretpassword1 --imap-url imap.someemailserver.com
+Example: ./start.sh --email-login rsiliwoniukgolem@fastmail.com --email-password secretpassword1 --imap-url imap.someemailserver.com
 4. Enjoy :)
