@@ -1,6 +1,6 @@
 U need:
 1. docker
-2. docker-compose v>3.4
+2. docker-compose v>=3.4
 3. helm and k8s cluster if you want to deploy it from chart :)
 4. bash
 5. port 8080 free
